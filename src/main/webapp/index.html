@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	html,body{
+		width:100%;
+		height:100%;
+		display:flex;
+		align-items:center;
+		justify-content: center; 
+		background: linear-gradient(180deg, rgba(123,207,20,1) 5%, rgba(29,63,0,1) 90%);
+	}
+	button{
+		width:30%;
+		height:70px;
+		font-size:50px;
+		background:none;
+		box-shadow:0px 0px 10px gray;
+		background: white;
+		cursor:pointer;
+	}
+	body>div{
+		width:100%;
+		height:100%;
+		display:flex;
+		align-items: center;
+		justify-content: center;
+	}
+</style>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+</head>
+<body>
+	<div>
+		<button onclick = 'createGame()'>Play with a friend</button>
+	</div>
+	<script>
+		function createGame(){
+	        var xhr = new XMLHttpRequest();
+	        xhr.open('GET','createGame');
+	        xhr.onreadystatechange = ()=>{
+	            if(xhr.readyState == 4){
+	                window.location.href = 'http://allwin-zstk292:8080/Chess/myGame/'+xhr.responseText;
+	            }
+	        }
+	        xhr.send();
+		}
+		$('body>div').hide();
+		$('body>div').show('slide',{direction:'left'},500);
+		$('button').hover(function (){
+			$(this).stop().animate({backgroundColor:'red'});
+		},
+		function(){
+			$(this).stop().animate({backgroundColor:'none'});
+		})
+	</script>
+</body>
+</html>
